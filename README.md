@@ -23,3 +23,21 @@ CloudForge is a production-grade cloud platform engineered with AWS CDK (TypeScr
 | **Phase 2** | **Elasticity & Workload Resilience** | **In Progress** | Metrics Server, Horizontal Pod Autoscaler (HPA), Stress Testing, Auto Scaling Groups |
 | **Phase 3** | **Automated DevSecOps Pipeline** | **Planned** | CI/CD, SonarQube (SAST), Trivy (CVE scanning), Amazon SNS alerts |
 | **Phase 4** | **Cloud Governance & Observability** | **Planned** | cdk-nag security checks, Prometheus & Grafana telemetry, runtime compliance |
+
+## Phase 2: Workload Elasticity & Resilience (Completed)
+
+- **Metrics Infrastructure**: Official Kubernetes Metrics Server deployed with RBAC aggregation.
+- **Autoscaling Target**: Horizontal Pod Autoscaler targeting 50% CPU utilization on `scalable-app` (Requests: `50m`, Limits: `100m`).
+- **Resilience & Scaling Validation**:
+  - **Baseline**: 2 replicas operating at ~2% CPU utilization.
+  - **Under Load**: 5 concurrent worker threads drove utilization to **121%**.
+  - **Scale-Up**: Replicas stepped up sequentially from **2 -> 4 -> 5**, automatically balanced across worker nodes in multiple Availability Zones.
+  - **Cooldown & Scale-Down**: After traffic ceased, CPU dropped back to ~2% and the controller cleanly downscaled pods back to **2 replicas** following the 300-second stabilization window.
+
+---
+
+## Phase 3: DevSecOps CI/CD Automation (Upcoming)
+
+- **Static Application Security Testing (SAST)**: Automated code scans with SonarQube.
+- **Container Vulnerability Scanning**: Image assessment in pipeline using Trivy.
+- **Deployment Automation**: Automated builds and deployments to Amazon EKS.
