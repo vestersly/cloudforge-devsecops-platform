@@ -499,30 +499,35 @@ operational visibility into Kubernetes workloads.
 | Monitoring Dashboard | Pending |
 | Dedicated Monitoring IAM Role | Pending |
 
----
-
-# 📸 10. Project Evidence
-
-Terminal screenshots and deployment evidence will be
-organized under:
-
-```text
-docs/
-└── screenshots/
-    ├── eks-cluster-deployment.png
-    ├── kubernetes-security-hardening.png
-    ├── github-actions-pipeline.png
-    ├── trivy-security-gate.png
-    ├── alb-external-connectivity.png
-    ├── hpa-autoscaling.png
-    ├── cloudwatch-agent-status.png
-    └── container-insights-metrics.png
-```
-
-These filenames are planned documentation assets.
-Screenshots will be added as they are collected and reviewed.
 
 ---
+
+## 📷 10. Project Evidence & Visual Proof
+
+### A. Shift-Left DevSecOps Pipeline
+Automated pipeline executing TypeScript validation, Gitleaks secret auditing, and blocking Trivy vulnerability/misconfiguration scans:
+
+![DevSecOps Workflow Run](docs/images/pipeline-summary.png)
+
+*Trivy scanner evaluating container manifests against CIS benchmarks and Pod Security Standards:*
+![Trivy Security Scanning Gate](docs/images/trivy-scan-details.png)
+
+---
+
+### B. AWS Load Balancer Controller & External Ingress
+Managed ALB dynamically discovering pods, updating target group bindings, and responding with `HTTP/1.1 200 OK`:
+
+![ALB Ingress and HTTP 200 Verification](docs/images/ingress-curl-verification.png)
+
+---
+
+### C. Amazon CloudWatch Container Insights Observability
+Cluster telemetry streaming container and node performance metrics into the AWS CloudWatch `ContainerInsights` namespace:
+
+![CloudWatch Metrics Discovery](docs/images/container-insights-metrics.png)
+
+---
+
 
 # 🚧 11. Remaining Improvements
 
